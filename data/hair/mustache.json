@@ -1,0 +1,5 @@
+{
+  "0": { "text": "none" },
+  "1": { "text": "smallMustache", "price": 2, "set": "facialHair" },
+  "2": { "text": "largeMustache", "price": 2, "set": "facialHair" }
+}

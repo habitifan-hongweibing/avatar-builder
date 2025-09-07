@@ -1,0 +1,29 @@
+{
+  "base": {
+    "0": { "text": "shieldBase0Text", "notes": "shieldBase0Notes", "value": 0 }
+  },
+  "warrior": {
+    "1": { "text": "shieldWarrior1Text", "notes": "shieldWarrior1Notes", "con": 2, "value": 20 },
+    "2": { "text": "shieldWarrior2Text", "notes": "shieldWarrior2Notes", "con": 3, "value": 35 },
+    "3": { "text": "shieldWarrior3Text", "notes": "shieldWarrior3Notes", "con": 5, "value": 50 },
+    "4": { "text": "shieldWarrior4Text", "notes": "shieldWarrior4Notes", "con": 7, "value": 70 },
+    "5": { "text": "shieldWarrior5Text", "notes": "shieldWarrior5Notes", "con": 9, "value": 90, "last": true }
+  },
+  "wizard": {},
+  "rogue": {
+    "0": { "text": "weaponRogue0Text", "notes": "weaponRogue0Notes", "str": 0, "value": 0 },
+    "1": { "text": "weaponRogue1Text", "notes": "weaponRogue1Notes", "str": 2, "value": 20 },
+    "2": { "text": "weaponRogue2Text", "notes": "weaponRogue2Notes", "str": 3, "value": 35 },
+    "3": { "text": "weaponRogue3Text", "notes": "weaponRogue3Notes", "str": 4, "value": 50 },
+    "4": { "text": "weaponRogue4Text", "notes": "weaponRogue4Notes", "str": 6, "value": 70 },
+    "5": { "text": "weaponRogue5Text", "notes": "weaponRogue5Notes", "str": 8, "value": 90 },
+    "6": { "text": "weaponRogue6Text", "notes": "weaponRogue6Notes", "str": 10, "value": 120, "last": true }
+  },
+  "healer": {
+    "1": { "text": "shieldHealer1Text", "notes": "shieldHealer1Notes", "con": 2, "value": 20 },
+    "2": { "text": "shieldHealer2Text", "notes": "shieldHealer2Notes", "con": 4, "value": 35 },
+    "3": { "text": "shieldHealer3Text", "notes": "shieldHealer3Notes", "con": 6, "value": 50 },
+    "4": { "text": "shieldHealer4Text", "notes": "shieldHealer4Notes", "con": 9, "value": 70 },
+    "5": { "text": "shieldHealer5Text", "notes": "shieldHealer5Notes", "con": 12, "value": 90, "last": true }
+  }
+}

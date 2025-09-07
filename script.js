@@ -33,19 +33,8 @@ async function loadRealData(categories) {
 
 async function loadCategory(category) {
     try {
-        const response = await fetch(`data/${category}.js`);
-        const text = await response.text();
-
-        // Извлекаем объект из export default
-        let data = null;
-        try {
-            const jsCode = text.replace(/export\s+default\s+/, '').replace(/;\s*$/, '');
-            data = (new Function('return ' + jsCode))();
-        } catch (e) {
-            console.error(`Ошибка парсинга данных для ${category}:`, e);
-            return;
-        }
-
+        const response = await fetch(`data/${category}.json`);
+        const data = await response.json();
         processCategoryData(data, category);
     } catch (error) {
         console.error(`Error loading ${category}:`, error);

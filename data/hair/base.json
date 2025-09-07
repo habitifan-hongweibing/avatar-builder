@@ -1,0 +1,23 @@
+{
+  "0": { "text": "none" },
+  "1": { "text": "ponytail" },
+  "2": { "text": "doublePonytail", "price": 2, "set": "baseHair1" },
+  "3": { "text": "braid" },
+  "4": { "text": "doubleBraid", "price": 2, "set": "baseHair1" },
+  "5": { "text": "wavyLong", "price": 2, "set": "baseHair1" },
+  "6": { "text": "wavyShort", "price": 2, "set": "baseHair1" },
+  "7": { "text": "straightLong", "price": 2, "set": "baseHair1" },
+  "8": { "text": "straightShort", "price": 2, "set": "baseHair1" },
+  "9": { "text": "highPonytailLeft", "price": 2, "set": "baseHair2" },
+  "10": { "text": "leftBun", "price": 2, "set": "baseHair2" },
+  "11": { "text": "highPonytailRight", "price": 2, "set": "baseHair2" },
+  "12": { "text": "rightBun", "price": 2, "set": "baseHair2" },
+  "13": { "text": "doubleHighPonytail", "price": 2, "set": "baseHair2" },
+  "14": { "text": "doubleBun", "price": 2, "set": "baseHair2" },
+  "15": { "text": "updo", "price": 2, "set": "baseHair3" },
+  "16": { "text": "curlyLong", "price": 2, "set": "baseHair3" },
+  "17": { "text": "curlyShort", "price": 2, "set": "baseHair3" },
+  "18": { "text": "messy", "price": 2, "set": "baseHair3" },
+  "19": { "text": "mohawk", "price": 2, "set": "baseHair3" },
+  "20": { "text": "fauxhawk", "price": 2, "set": "baseHair3" }
+}

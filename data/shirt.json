@@ -1,0 +1,20 @@
+{
+  "black": {},
+  "blue": {},
+  "green": {},
+  "pink": {},
+  "white": {},
+  "yellow": {},
+
+  "convict": { "price": 2, "set": "specialShirts" },
+  "cross": { "price": 2, "set": "legacyShirts" },
+  "fire": { "price": 2, "set": "specialShirts" },
+  "horizon": { "price": 2, "set": "specialShirts" },
+  "ocean": { "price": 2, "set": "specialShirts" },
+  "purple": { "price": 2, "set": "specialShirts" },
+  "rainbow": { "price": 2, "set": "specialShirts" },
+  "redblue": { "price": 2, "set": "specialShirts" },
+  "thunder": { "price": 2, "set": "specialShirts" },
+  "tropical": { "price": 2, "set": "specialShirts" },
+  "zombie": { "price": 2, "set": "specialShirts" }
+}

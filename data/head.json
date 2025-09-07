@@ -1,0 +1,33 @@
+{
+  "base": {
+    "0": { "text": "headBase0Text", "notes": "headBase0Notes", "value": 0 }
+  },
+  "warrior": {
+    "1": { "text": "headWarrior1Text", "notes": "headWarrior1Notes", "str": 2, "value": 15 },
+    "2": { "text": "headWarrior2Text", "notes": "headWarrior2Notes", "str": 4, "value": 25 },
+    "3": { "text": "headWarrior3Text", "notes": "headWarrior3Notes", "str": 6, "value": 40 },
+    "4": { "text": "headWarrior4Text", "notes": "headWarrior4Notes", "str": 9, "value": 60 },
+    "5": { "text": "headWarrior5Text", "notes": "headWarrior5Notes", "str": 12, "value": 80, "last": true }
+  },
+  "wizard": {
+    "1": { "text": "headWizard1Text", "notes": "headWizard1Notes", "per": 2, "value": 15 },
+    "2": { "text": "headWizard2Text", "notes": "headWizard2Notes", "per": 3, "value": 25 },
+    "3": { "text": "headWizard3Text", "notes": "headWizard3Notes", "per": 5, "value": 40 },
+    "4": { "text": "headWizard4Text", "notes": "headWizard4Notes", "per": 7, "value": 60 },
+    "5": { "text": "headWizard5Text", "notes": "headWizard5Notes", "per": 10, "value": 80, "last": true }
+  },
+  "rogue": {
+    "1": { "text": "headRogue1Text", "notes": "headRogue1Notes", "per": 2, "value": 15 },
+    "2": { "text": "headRogue2Text", "notes": "headRogue2Notes", "per": 4, "value": 25 },
+    "3": { "text": "headRogue3Text", "notes": "headRogue3Notes", "per": 6, "value": 40 },
+    "4": { "text": "headRogue4Text", "notes": "headRogue4Notes", "per": 9, "value": 60 },
+    "5": { "text": "headRogue5Text", "notes": "headRogue5Notes", "per": 12, "value": 80, "last": true }
+  },
+  "healer": {
+    "1": { "text": "headHealer1Text", "notes": "headHealer1Notes", "int": 2, "value": 15 },
+    "2": { "text": "headHealer2Text", "notes": "headHealer2Notes", "int": 3, "value": 25 },
+    "3": { "text": "headHealer3Text", "notes": "headHealer3Notes", "int": 5, "value": 40 },
+    "4": { "text": "headHealer4Text", "notes": "headHealer4Notes", "int": 7, "value": 60 },
+    "5": { "text": "headHealer5Text", "notes": "headHealer5Notes", "int": 9, "value": 80, "last": true }
+  }
+}

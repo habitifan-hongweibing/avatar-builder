@@ -1,0 +1,6 @@
+{
+  "0": { "text": "none" },
+  "1": { "text": "goatee", "price": 2, "set": "facialHair" },
+  "2": { "text": "shortBeard", "price": 2, "set": "facialHair" },
+  "3": { "text": "longBeard", "price": 2, "set": "facialHair" }
+}
