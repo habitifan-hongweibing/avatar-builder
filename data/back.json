@@ -1,5 +1,10 @@
 {
   "base": {
-    "0": { "text": "backBase0Text", "notes": "backBase0Notes", "value": 0 }
+    "0": {
+      "text": "backBase0Text",
+      "notes": "backBase0Notes",
+      "value": 0,
+      "image": "back_base_0.png"
+    }
   }
 }

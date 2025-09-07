@@ -1,15 +1,13 @@
 {
-  "none": {},
-  "black": {},
-  "blue": {},
-  "green": {},
-  "pink": {},
-  "red": {},
-  "yellow": {},
-  "handleless_black": {},
-  "handleless_blue": {},
-  "handleless_green": {},
-  "handleless_pink": {},
-  "handleless_red": {},
-  "handleless_yellow": {}
+  "none": { "image": "chair_none.png" },
+  "black": { "image": "chair_black.png" },
+  "blue": { "image": "chair_blue.png" },
+  "green": { "image": "chair_green.png" },
+  "pink": { "image": "chair_pink.png" },
+  "red": { "image": "chair_red.png" },
+  "yellow": { "image": "chair_yellow.png" },
+  "handleless_black": { "image": "chair_handleless_black.png" },
+  "handleless_blue": { "image": "chair_handleless_blue.png" },
+  "handleless_green": { "image": "chair_handleless_green.png" },
+  "handleless_pink": { "image": "chair_handleless_pink.png" }
 }

@@ -1,5 +1,11 @@
 {
   "base": {
-    "0": { "text": "headAccessoryBase0Text", "notes": "headAccessoryBase0Notes", "value": 0, "last": true }
+    "0": {
+      "text": "headAccessoryBase0Text",
+      "notes": "headAccessoryBase0Notes",
+      "value": 0,
+      "last": true,
+      "image": "head-accessory_base_0.png"
+    }
   }
 }

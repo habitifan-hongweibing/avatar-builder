@@ -3,35 +3,36 @@
     "0": {
       "text": "armorBase0Text",
       "notes": "armorBase0Notes",
-      "value": 0
+      "value": 0,
+      "image": "armor_base_0.png"
     }
   },
   "warrior": {
-    "1": { "text": "armorWarrior1Text", "notes": "armorWarrior1Notes", "con": 3, "value": 30 },
-    "2": { "text": "armorWarrior2Text", "notes": "armorWarrior2Notes", "con": 5, "value": 45 },
-    "3": { "text": "armorWarrior3Text", "notes": "armorWarrior3Notes", "con": 7, "value": 65 },
-    "4": { "text": "armorWarrior4Text", "notes": "armorWarrior4Notes", "con": 9, "value": 90 },
-    "5": { "text": "armorWarrior5Text", "notes": "armorWarrior5Notes", "con": 11, "value": 120, "last": true }
+    "1": { "text": "armorWarrior1Text", "notes": "armorWarrior1Notes", "con": 3, "value": 30, "image": "armor_warrior_1.png" },
+    "2": { "text": "armorWarrior2Text", "notes": "armorWarrior2Notes", "con": 5, "value": 45, "image": "armor_warrior_2.png" },
+    "3": { "text": "armorWarrior3Text", "notes": "armorWarrior3Notes", "con": 7, "value": 65, "image": "armor_warrior_3.png" },
+    "4": { "text": "armorWarrior4Text", "notes": "armorWarrior4Notes", "con": 9, "value": 90, "image": "armor_warrior_4.png" },
+    "5": { "text": "armorWarrior5Text", "notes": "armorWarrior5Notes", "con": 11, "value": 120, "last": true, "image": "armor_warrior_5.png" }
   },
   "wizard": {
-    "1": { "text": "armorWizard1Text", "notes": "armorWizard1Notes", "int": 2, "value": 30 },
-    "2": { "text": "armorWizard2Text", "notes": "armorWizard2Notes", "int": 4, "value": 45 },
-    "3": { "text": "armorWizard3Text", "notes": "armorWizard3Notes", "int": 6, "value": 65 },
-    "4": { "text": "armorWizard4Text", "notes": "armorWizard4Notes", "int": 9, "value": 90 },
-    "5": { "text": "armorWizard5Text", "notes": "armorWizard5Notes", "int": 12, "value": 120, "last": true }
+    "1": { "text": "armorWizard1Text", "notes": "armorWizard1Notes", "int": 2, "value": 30, "image": "armor_wizard_1.png" },
+    "2": { "text": "armorWizard2Text", "notes": "armorWizard2Notes", "int": 4, "value": 45, "image": "armor_wizard_2.png" },
+    "3": { "text": "armorWizard3Text", "notes": "armorWizard3Notes", "int": 6, "value": 65, "image": "armor_wizard_3.png" },
+    "4": { "text": "armorWizard4Text", "notes": "armorWizard4Notes", "int": 9, "value": 90, "image": "armor_wizard_4.png" },
+    "5": { "text": "armorWizard5Text", "notes": "armorWizard5Notes", "int": 12, "value": 120, "last": true, "image": "armor_wizard_5.png" }
   },
   "rogue": {
-    "1": { "text": "armorRogue1Text", "notes": "armorRogue1Notes", "per": 6, "value": 30 },
-    "2": { "text": "armorRogue2Text", "notes": "armorRogue2Notes", "per": 9, "value": 45 },
-    "3": { "text": "armorRogue3Text", "notes": "armorRogue3Notes", "per": 12, "value": 65 },
-    "4": { "text": "armorRogue4Text", "notes": "armorRogue4Notes", "per": 15, "value": 90 },
-    "5": { "text": "armorRogue5Text", "notes": "armorRogue5Notes", "per": 18, "value": 120, "last": true }
+    "1": { "text": "armorRogue1Text", "notes": "armorRogue1Notes", "per": 6, "value": 30, "image": "armor_rogue_1.png" },
+    "2": { "text": "armorRogue2Text", "notes": "armorRogue2Notes", "per": 9, "value": 45, "image": "armor_rogue_2.png" },
+    "3": { "text": "armorRogue3Text", "notes": "armorRogue3Notes", "per": 12, "value": 65, "image": "armor_rogue_3.png" },
+    "4": { "text": "armorRogue4Text", "notes": "armorRogue4Notes", "per": 15, "value": 90, "image": "armor_rogue_4.png" },
+    "5": { "text": "armorRogue5Text", "notes": "armorRogue5Notes", "per": 18, "value": 120, "last": true, "image": "armor_rogue_5.png" }
   },
   "healer": {
-    "1": { "text": "armorHealer1Text", "notes": "armorHealer1Notes", "con": 6, "value": 30 },
-    "2": { "text": "armorHealer2Text", "notes": "armorHealer2Notes", "con": 9, "value": 45 },
-    "3": { "text": "armorHealer3Text", "notes": "armorHealer3Notes", "con": 12, "value": 65 },
-    "4": { "text": "armorHealer4Text", "notes": "armorHealer4Notes", "con": 15, "value": 90 },
-    "5": { "text": "armorHealer5Text", "notes": "armorHealer5Notes", "con": 18, "value": 120, "last": true }
+    "1": { "text": "armorHealer1Text", "notes": "armorHealer1Notes", "con": 6, "value": 30, "image": "armor_healer_1.png" },
+    "2": { "text": "armorHealer2Text", "notes": "armorHealer2Notes", "con": 9, "value": 45, "image": "armor_healer_2.png" },
+    "3": { "text": "armorHealer3Text", "notes": "armorHealer3Notes", "con": 12, "value": 65, "image": "armor_healer_3.png" },
+    "4": { "text": "armorHealer4Text", "notes": "armorHealer4Notes", "con": 15, "value": 90, "image": "armor_healer_4.png" },
+    "5": { "text": "armorHealer5Text", "notes": "armorHealer5Notes", "con": 18, "value": 120, "last": true, "image": "armor_healer_5.png" }
   }
 }

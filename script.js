@@ -59,7 +59,7 @@ function processCategoryData(data, category) {
         for (const [itemKey, itemData] of Object.entries(data)) {
             gearDatabase[category].push({
                 id: itemKey,
-                image: `assets/images/hair/${category.replace('hair', '').toLowerCase()}/${itemKey}.png`
+                image: itemData.image ? `assets/images/hair/${itemData.image}` : ''
             });
         }
     } else if (category === 'mount') {
@@ -69,12 +69,22 @@ function processCategoryData(data, category) {
                 if (!itemData) continue;
                 gearDatabase[category].push({
                     id: itemKey,
-                    body: `assets/images/mounts/body/${itemKey}.png`,
-                    head: `assets/images/mounts/head/${itemKey}.png`,
-                    icon: `assets/images/mounts/icon/${itemKey}.png`,
+                    body: itemData.bodyImage ? `assets/images/mounts/body/${itemData.bodyImage}` : `assets/images/mounts/body/${itemKey}.png`,
+                    head: itemData.headImage ? `assets/images/mounts/head/${itemData.headImage}` : `assets/images/mounts/head/${itemKey}.png`,
+                    icon: itemData.iconImage ? `assets/images/mounts/icon/${itemData.iconImage}` : `assets/images/mounts/icon/${itemKey}.png`,
                     class: setType === 'base' ? 'all' : setType
                 });
             }
+        }
+    } else if (category === 'background') {
+        for (const [setType, items] of Object.entries(data)) {
+            if (!items) continue;
+            items.forEach(itemData => {
+                gearDatabase[category].push({
+                    id: itemData.key,
+                    image: itemData.image ? `assets/images/background/${itemData.image}` : ''
+                });
+            });
         }
     } else {
         for (const [setType, items] of Object.entries(data)) {
@@ -83,7 +93,7 @@ function processCategoryData(data, category) {
                 if (!itemData) continue;
                 gearDatabase[category].push({
                     id: itemKey,
-                    image: `assets/images/${category}/${itemKey}.png`,
+                    image: itemData.image ? `assets/images/${category}/${itemData.image}` : '',
                     class: setType === 'base' ? 'all' : setType
                 });
             }
@@ -243,7 +253,7 @@ function downloadAvatar() {
         images.forEach(img => {
             if (img) ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         });
-        const link = document.createElement('a');
+                const link = document.createElement('a');
         link.download = 'avatar.png';
         link.href = canvas.toDataURL();
         link.click();

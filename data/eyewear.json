@@ -1,5 +1,11 @@
 {
   "base": {
-    "0": { "text": "eyewearBase0Text", "notes": "eyewearBase0Notes", "value": 0, "last": true }
+    "0": {
+      "text": "eyewearBase0Text",
+      "notes": "eyewearBase0Notes",
+      "value": 0,
+      "last": true,
+      "image": "eyewear_base_0.png"
+    }
   }
 }

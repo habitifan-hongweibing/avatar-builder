@@ -1,6 +1,6 @@
 {
-  "0": { "text": "none" },
-  "1": { "text": "goatee", "price": 2, "set": "facialHair" },
-  "2": { "text": "shortBeard", "price": 2, "set": "facialHair" },
-  "3": { "text": "longBeard", "price": 2, "set": "facialHair" }
+  "0": { "text": "none", "image": "hair_beard_0.png" },
+  "1": { "text": "goatee", "price": 2, "set": "facialHair", "image": "hair_beard_1.png" },
+  "2": { "text": "shortBeard", "price": 2, "set": "facialHair", "image": "hair_beard_2.png" },
+  "3": { "text": "longBeard", "price": 2, "set": "facialHair", "image": "hair_beard_3.png" }
 }

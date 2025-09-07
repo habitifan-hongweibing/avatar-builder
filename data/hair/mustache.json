@@ -1,5 +1,5 @@
 {
-  "0": { "text": "none" },
-  "1": { "text": "smallMustache", "price": 2, "set": "facialHair" },
-  "2": { "text": "largeMustache", "price": 2, "set": "facialHair" }
+  "0": { "text": "none", "image": "hair_mustache_0.png" },
+  "1": { "text": "smallMustache", "price": 2, "set": "facialHair", "image": "hair_mustache_1.png" },
+  "2": { "text": "largeMustache", "price": 2, "set": "facialHair", "image": "hair_mustache_2.png" }
 }
