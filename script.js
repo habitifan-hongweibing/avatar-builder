@@ -16,8 +16,7 @@ async function loadAllGearData() {
         'weapon', 'armor', 'head', 'shield', 'back', 'body',
         'headAccessory', 'eyewear', 'background', 'skin', 'shirt', 'chair',
         'mount', 'pet',
-        'hairColor', 'hairBase', 'hairBangs', 'hairBeard',
-        'hairMustache', 'hairFlower', 'hairTopHair'
+        'hairColor', 'hairBase', 'hairBangs', 'hairBeard', 'hairMustache', 'hairFlower', 'hairTopHair'
     ];
     categories.forEach(category => {
         gearDatabase[category] = [];
@@ -234,7 +233,7 @@ function downloadAvatar() {
         'layerBack', 'layerBody', 'layerSkin', 'layerShirt', 'layerArmor',
         'layerHairColor', 'layerHairBase', 'layerHairBangs', 'layerHairBeard',
         'layerHairMustache', 'layerHairFlower', 'layerHairTopHair',
-        'layerHead', 'layerHeadAccessory', 'layerEyewear',
+        'layerHead', 'layerHeadAccessory', 'layerEyewear', 'layerFlower',
         'layerShield', 'layerWeapon', 'layerPet'
     ];
     Promise.all(layerIds.map(id => {
@@ -254,7 +253,7 @@ function downloadAvatar() {
         images.forEach(img => {
             if (img) ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         });
-        const link = document.createElement('a');
+                const link = document.createElement('a');
         link.download = 'avatar.png';
         link.href = canvas.toDataURL();
         link.click();
