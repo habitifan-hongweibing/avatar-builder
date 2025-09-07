@@ -3,7 +3,7 @@ let currentOutfit = {
     back: null, body: null, skin: null, shirt: null, armor: null,
     hairColor: null, hairBase: null, hairBangs: null, hairBeard: null,
     hairMustache: null, hairFlower: null, hairTopHair: null,
-    head: null, headAccessory: null, eyewear: null, flower: null,
+    head: null, headAccessory: null, eyewear: null,
     shield: null, weapon: null, pet: null
 };
 let currentClass = 'all';
@@ -57,9 +57,13 @@ async function loadCategory(category) {
 function processCategoryData(data, category) {
     if (category.startsWith('hair')) {
         for (const [itemKey, itemData] of Object.entries(data)) {
+            const hairType = category.replace('hair', '').toLowerCase();
+            const imagePath = itemData.image ? `assets/images/hair/${hairType}/${itemData.image}` : '';
+            
             gearDatabase[category].push({
                 id: itemKey,
-                image: itemData.image ? `assets/images/hair/${itemData.image}` : ''
+                image: imagePath,
+                class: 'all'
             });
         }
     } else if (category === 'mount') {
@@ -76,24 +80,28 @@ function processCategoryData(data, category) {
                 });
             }
         }
-    } else if (category === 'background') {
-        for (const [setType, items] of Object.entries(data)) {
-            if (!items) continue;
-            items.forEach(itemData => {
-                gearDatabase[category].push({
-                    id: itemData.key,
-                    image: itemData.image ? `assets/images/background/${itemData.image}` : ''
-                });
-            });
-        }
     } else {
         for (const [setType, items] of Object.entries(data)) {
             if (!items) continue;
             for (const [itemKey, itemData] of Object.entries(items)) {
                 if (!itemData) continue;
+                
+                let imagePath = '';
+                if (itemData.image) {
+                    if (category === 'background') {
+                        imagePath = `assets/images/backgrounds/${itemData.image}`;
+                    } else if (category === 'skin') {
+                        imagePath = `assets/images/skin/${itemData.image}`;
+                    } else if (category === 'shirt') {
+                        imagePath = `assets/images/shirts/${itemData.image}`;
+                    } else {
+                        imagePath = `assets/images/${category}/${itemData.image}`;
+                    }
+                }
+                
                 gearDatabase[category].push({
                     id: itemKey,
-                    image: itemData.image ? `assets/images/${category}/${itemData.image}` : '',
+                    image: imagePath,
                     class: setType === 'base' ? 'all' : setType
                 });
             }
@@ -102,9 +110,22 @@ function processCategoryData(data, category) {
     console.log(`✅ ${category}: ${gearDatabase[category].length} items loaded`);
 }
 
+function setDefaultOutfit() {
+    const categoriesToSet = ['skin', 'head', 'body', 'hairBase'];
+    categoriesToSet.forEach(category => {
+        if (gearDatabase[category] && gearDatabase[category].length > 0) {
+            const defaultItem = filterItemsByClass(gearDatabase[category])[0];
+            if (defaultItem) {
+                applyItemToAvatar(defaultItem, category);
+            }
+        }
+    });
+}
+
 async function init() {
     console.log('🚀 Initializing...');
     await loadAllGearData();
+    setDefaultOutfit();
     setupEventListeners();
     showCategory('weapon');
 }
@@ -158,23 +179,61 @@ function displayItems(items, category) {
         return;
     }
     grid.innerHTML = '';
+    
+    const noneButton = document.createElement('div');
+    noneButton.className = 'item';
+    noneButton.innerHTML = `
+        <div style="width: 64px; height: 64px; background: rgba(0,0,0,0.3); 
+                   display: flex; align-items: center; justify-content: center;
+                   border-radius: 5px; margin: 0 auto 5px;">
+            <span style="font-size: 24px;">✕</span>
+        </div>
+        <p>None</p>
+    `;
+    noneButton.addEventListener('click', () => {
+        removeItemFromAvatar(category);
+    });
+    grid.appendChild(noneButton);
+    
     items.forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.className = 'item';
+        itemElement.title = item.id;
+        
         if (category === 'mount') {
             itemElement.innerHTML = `
-                <img src="${item.icon}" alt="" onerror="this.style.display='none'">
+                <img src="${item.icon}" alt="${item.id}" onerror="this.style.display='none'">
             `;
         } else {
             itemElement.innerHTML = `
-                <img src="${item.image}" alt="" onerror="this.style.display='none'">
+                <img src="${item.image}" alt="${item.id}" onerror="this.style.display='none'">
             `;
         }
+        
         itemElement.addEventListener('click', () => {
             selectItem(item, category);
         });
         grid.appendChild(itemElement);
     });
+}
+
+function removeItemFromAvatar(category) {
+    let layerId = `layer${category.charAt(0).toUpperCase() + category.slice(1)}`;
+    
+    if (category === 'mount') {
+        const layerBody = document.getElementById('layerMountBody');
+        const layerHead = document.getElementById('layerMountHead');
+        if (layerBody) layerBody.style.display = 'none';
+        if (layerHead) layerHead.style.display = 'none';
+        currentOutfit.mountBody = null;
+        currentOutfit.mountHead = null;
+    } else {
+        const layer = document.getElementById(layerId);
+        if (layer) {
+            layer.style.display = 'none';
+            currentOutfit[category] = null;
+        }
+    }
 }
 
 function selectClass(className) {
@@ -194,12 +253,12 @@ function applyItemToAvatar(item, category) {
     if (category === 'mount') {
         const layerBody = document.getElementById('layerMountBody');
         const layerHead = document.getElementById('layerMountHead');
-        if (layerBody) {
+        if (layerBody && item.body) {
             layerBody.src = item.body;
             layerBody.style.display = 'block';
             currentOutfit.mountBody = item.id;
         }
-        if (layerHead) {
+        if (layerHead && item.head) {
             layerHead.src = item.head;
             layerHead.style.display = 'block';
             currentOutfit.mountHead = item.id;
@@ -207,40 +266,51 @@ function applyItemToAvatar(item, category) {
     } else {
         let layerId = `layer${category.charAt(0).toUpperCase() + category.slice(1)}`;
         const layer = document.getElementById(layerId);
-        if (layer) {
+        if (layer && item.image) {
             layer.src = item.image;
             layer.style.display = 'block';
             currentOutfit[category] = item.id;
         }
     }
+    
+    const placeholder = document.getElementById('avatarPlaceholder');
+    if (placeholder) {
+        placeholder.style.display = 'none';
+    }
 }
 
 function randomizeOutfit() {
     Object.keys(gearDatabase).forEach(category => {
-        if (gearDatabase[category].length > 0) {
-            const randomItem = gearDatabase[category][Math.floor(Math.random() * gearDatabase[category].length)];
-            applyItemToAvatar(randomItem, category);
+        if (gearDatabase[category] && gearDatabase[category].length > 0) {
+            const filteredItems = filterItemsByClass(gearDatabase[category]);
+            if (filteredItems.length > 0) {
+                const randomItem = filteredItems[Math.floor(Math.random() * filteredItems.length)];
+                applyItemToAvatar(randomItem, category);
+            }
         }
     });
 }
 
 function downloadAvatar() {
     const canvas = document.createElement('canvas');
-    canvas.width = 512; canvas.height = 512;
+    canvas.width = 140;
+    canvas.height = 147;
     const ctx = canvas.getContext('2d');
+    
     const layerIds = [
         'layerBackground', 'layerChair', 'layerMountBody', 'layerMountHead',
         'layerBack', 'layerBody', 'layerSkin', 'layerShirt', 'layerArmor',
         'layerHairColor', 'layerHairBase', 'layerHairBangs', 'layerHairBeard',
         'layerHairMustache', 'layerHairFlower', 'layerHairTopHair',
-        'layerHead', 'layerHeadAccessory', 'layerEyewear', 'layerFlower',
+        'layerHead', 'layerHeadAccessory', 'layerEyewear',
         'layerShield', 'layerWeapon', 'layerPet'
     ];
+    
     Promise.all(layerIds.map(id => {
         const img = document.getElementById(id);
         return new Promise(resolve => {
             if (img && img.src && img.style.display !== 'none') {
-                const tempImg = new window.Image();
+                const tempImg = new Image();
                 tempImg.crossOrigin = 'anonymous';
                 tempImg.onload = () => resolve(tempImg);
                 tempImg.onerror = () => resolve(null);
@@ -250,13 +320,19 @@ function downloadAvatar() {
             }
         });
     })).then(images => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
         images.forEach(img => {
             if (img) ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         });
-                const link = document.createElement('a');
-        link.download = 'avatar.png';
+        
+        const link = document.createElement('a');
+        link.download = 'habitica-avatar.png';
         link.href = canvas.toDataURL();
         link.click();
+    }).catch(error => {
+        console.error('Error creating avatar image:', error);
+        alert('Error creating avatar image. Please make sure all images are loaded.');
     });
 }
 
