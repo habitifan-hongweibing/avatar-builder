@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitica Avatar Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Habitica Avatar Builder</h1>
+            <p>A fan-made project. Not an official Habitica client.</p>
+        </header>
+
+        <main class="main-content">
+            <!-- ЛЕВАЯ КОЛОНКА - ПРЕВЬЮ АВАТАРА -->
+            <section class="avatar-panel">
+                <div class="avatar-preview" id="avatarPreview">
+                    <div class="avatar-layers">
+                        <img class="avatar-layer" id="layerBackground" src="" alt="Background">
+                        <img class="avatar-layer" id="layerMountBody" src="" alt="Mount Body">
+                        <img class="avatar-layer" id="layerMountHead" src="" alt="Mount Head">
+                        <img class="avatar-layer" id="layerBody" src="" alt="Body">
+                        <img class="avatar-layer" id="layerHead" src="" alt="Head">
+                        <img class="avatar-layer" id="layerHair" src="" alt="Hair">
+                        <img class="avatar-layer" id="layerBeard" src="" alt="Beard">
+                        <img class="avatar-layer" id="layerArmor" src="" alt="Armor">
+                        <img class="avatar-layer" id="layerWeapon" src="" alt="Weapon">
+                        <img class="avatar-layer" id="layerShield" src="" alt="Shield">
+                        <img class="avatar-layer" id="layerBack" src="" alt="Back Item">
+                        <img class="avatar-layer" id="layerHeadAccessory" src="" alt="Head Accessory">
+                        <img class="avatar-layer" id="layerEyewear" src="" alt="Eyewear">
+                        <img class="avatar-layer" id="layerWheelchair" src="" alt="Wheelchair">
+                    </div>
+                    <p class="placeholder">Your avatar will appear here!</p>
+                </div>
+                
+                <div class="class-selection">
+                    <h3>Select Class:</h3>
+                    <div class="class-buttons">
+                        <button class="class-btn active" data-class="all">All Classes</button>
+                        <button class="class-btn" data-class="warrior">
+        <img src="assets/images/classes/warrior.svg" alt="Warrior" class="class-icon">
+        Warrior
+    </button>
+    <button class="class-btn" data-class="rogue">
+        <img src="assets/images/classes/rogue.svg" alt="Rogue" class="class-icon">
+        Rogue
+    </button>
+    <button class="class-btn" data-class="wizard">
+        <img src="assets/images/classes/wizard.svg" alt="Wizard" class="class-icon">
+        Wizard
+    </button>
+    <button class="class-btn" data-class="healer">
+        <img src="assets/images/classes/healer.svg" alt="Healer" class="class-icon">
+        Healer
+    </button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="randomizeBtn" class="action-btn">🎲 Randomize</button>
+                    <button id="downloadBtn" class="action-btn">📥 Download Avatar</button>
+                </div>
+                <div class="about-section">
+    <h3>About</h3>
+    <div class="about-content">
+        <p>Hi! My name is <a href="https://habitica.com/profile/d5edea78-6f44-43d6-83ef-fc9da1cbcae2" target="_blank" class="profile-link">@hongweibing</a></p>
+        <p>I am a big fan of Habitica, and I am trying to make the experience of using it even better. On <a href="https://storm-girdle-c18.notion.site/Useful-tools-for-Habitica-26486e08ea8a80f791bbd192356d3c6c" target="_blank" class="notion-link">this page</a>, I will post useful scripts, utilities, and other materials that may be useful to you. If you have any ready-made materials or ideas, you can write to me.</p>
+        <p>You can also give me a couple of <span class="gems-text">gems</span> if you find these materials useful :) But this is not necessary. The main thing is to develop yourself and achieve your goals!</p>
+        <p>Good luck!</p>
+    </div>
+</div>
+            </section>
+
+            <!-- СРЕДНЯЯ КОЛОНКА - КАТЕГОРИИ -->
+            <section class="categories-panel">
+                <h2>Categories</h2>
+                <div class="categories-list" id="categoriesList">
+                    <button class="category-btn" data-category="background">Backgrounds</button>
+                    <button class="category-btn" data-category="weapon">Weapons</button>
+                    <button class="category-btn" data-category="shield">Shields</button>
+                    <button class="category-btn" data-category="head">Heads</button>
+                    <button class="category-btn" data-category="armor">Armor</button>
+                    <button class="category-btn" data-category="back">Back Items</button>
+                    <button class="category-btn" data-category="mount">Mounts</button>
+                    <button class="category-btn" data-category="pet">Pets</button>
+                    <button class="category-btn" data-category="skin">Skin</button>
+                    <button class="category-btn" data-category="hair">Hair</button>
+                    <button class="category-btn" data-category="beard">Beards</button>
+                    <button class="category-btn" data-category="headAccessory">Head Accessories</button>
+                    <button class="category-btn" data-category="eyewear">Eyewear</button>
+                    <button class="category-btn" data-category="flower">Flowers</button>
+                    <button class="category-btn" data-category="shirt">Shirts</button>
+                    <button class="category-btn" data-category="wheelchair">Wheelchairs</button>
+                </div>
+            </section>
+
+            <!-- ПРАВАЯ КОЛОНКА - ПРЕДМЕТЫ -->
+            <section class="items-panel">
+                <h2>Items</h2>
+                <div class="items-grid" id="itemsGrid">
+                    <p class="placeholder">Select a category to see items</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

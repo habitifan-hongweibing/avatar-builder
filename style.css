@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg, #2c1b47 0%, #4e2a8e 100%);
+    color: #fff;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #9f7be1;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    color: #d8c3ff;
+    font-size: 1.1em;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 300px 250px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.avatar-panel {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.avatar-preview {
+    width: 140px;
+    height: 147px;
+    margin: 0 auto 20px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-layers {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.placeholder {
+    color: #9f7be1;
+    text-align: center;
+    font-style: italic;
+}
+
+.class-selection {
+    margin-bottom: 20px;
+}
+
+.class-selection h3 {
+    margin-bottom: 10px;
+    color: #9f7be1;
+}
+
+.class-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.class-btn {
+    background: rgba(159, 123, 225, 0.2);
+    border: 2px solid #9f7be1;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.class-btn:hover {
+    background: rgba(159, 123, 225, 0.4);
+}
+
+.class-btn.active {
+    background: #9f7be1;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    background: linear-gradient(135deg, #9f7be1 0%, #7b5bbe 100%);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.categories-panel {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.categories-panel h2 {
+    color: #9f7be1;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.category-btn {
+    background: rgba(159, 123, 225, 0.1);
+    border: 2px solid transparent;
+    color: #d8c3ff;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background: rgba(159, 123, 225, 0.2);
+    border-color: #9f7be1;
+}
+
+.category-btn.active {
+    background: #9f7be1;
+    color: white;
+    font-weight: bold;
+}
+
+.items-panel {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.items-panel h2 {
+    color: #9f7be1;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 15px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.item:hover {
+    border-color: #9f7be1;
+    transform: translateY(-2px);
+}
+
+.item img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin-bottom: 5px;
+    image-rendering: pixelated;
+}
+
+.item p {
+    font-size: 0.8em;
+    color: #d8c3ff;
+    margin: 0;
+    word-break: break-word;
+}
+/* Стили для иконок классов */
+.class-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+    filter: brightness(0) invert(1); /* Делает SVG белым */
+    transition: all 0.3s ease;
+}
+
+/* Цвет иконок для активной кнопки */
+.class-btn.active .class-icon {
+    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(220deg);
+}
+
+/* Fallback если SVG не загрузится */
+.class-btn:not(:has(.class-icon))::before {
+    display: inline-block;
+    margin-right: 8px;
+    width: 20px;
+    text-align: center;
+}
+
+.class-btn[data-class="all"]:not(:has(.class-icon))::before {
+    content: "🌟";
+}
+
+.class-btn[data-class="warrior"]:not(:has(.class-icon))::before {
+    content: "⚔️";
+}
+
+.class-btn[data-class="rogue"]:not(:has(.class-icon))::before {
+    content: "🏹";
+}
+
+.class-btn[data-class="wizard"]:not(:has(.class-icon))::before {
+    content: "🔮";
+}
+
+.class-btn[data-class="healer"]:not(:has(.class-icon))::before {
+    content: "💖";
+}
+/* About Section - Safe */
+.about-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: auto; /* Важно! Прижимает к низу */
+}
+
+.about-section h3 {
+    color: #9f7be1;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.about-content {
+    font-size: 0.8em;
+    line-height: 1.4;
+}
+
+.about-content p {
+    margin-bottom: 10px;
+    color: #d8c3ff;
+}
+
+.profile-link {
+    color: #9f7be1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile-link:hover {
+    text-decoration: underline;
+}
+
+.notion-link {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.notion-link:hover {
+    text-decoration: underline;
+}
+
+.gems-text {
+    color: #4cd964;
+    font-weight: bold;
+}
+
+/* Делаем левую колонку flex для правильного расположения */
+.avatar-panel {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+}
+
+/* Убираем лишние отступы */
+.action-buttons {
+    margin-bottom: 20px; /* Сохраняем отступ над About */
+}
