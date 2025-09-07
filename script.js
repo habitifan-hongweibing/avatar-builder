@@ -1,4 +1,3 @@
-// ==================== СИСТЕМА ДАННЫХ ====================
 let currentOutfit = {
     background: null, chair: null, mountBody: null, mountHead: null,
     back: null, body: null, skin: null, shirt: null, armor: null,
@@ -9,15 +8,14 @@ let currentOutfit = {
 };
 let currentClass = 'all';
 let gearDatabase = {};
+let missingCategories = {};
 
-// ==================== ЗАГРУЗКА РЕАЛЬНЫХ ДАННЫХ ====================
 async function loadAllGearData() {
     console.log('🔄 Loading gear data...');
     const categories = [
         'weapon', 'armor', 'head', 'shield', 'back', 'body',
         'headAccessory', 'eyewear', 'background', 'skin', 'shirt', 'chair',
         'mount', 'pet',
-        // волосы — отдельные категории:
         'hairColor', 'hairBase', 'hairBangs', 'hairBeard', 'hairMustache', 'hairFlower', 'hairTopHair'
     ];
     categories.forEach(category => {
@@ -28,15 +26,10 @@ async function loadAllGearData() {
 }
 
 async function loadRealData(categories) {
-    try {
-        await Promise.all(categories.map(loadCategory));
-    } catch (error) {
-        console.error('Error loading data:', error);
-    }
+    await Promise.all(categories.map(loadCategory));
 }
 
 async function loadCategory(category) {
-    // hair категории — отдельные файлы
     const hairMap = {
         hairColor: 'hair/color.json',
         hairBase: 'hair/base.json',
@@ -49,22 +42,24 @@ async function loadCategory(category) {
     const file = hairMap[category] || `${category}.json`;
     try {
         const response = await fetch(`data/${file}`);
+        if (!response.ok) {
+            missingCategories[category] = true;
+            return;
+        }
         const data = await response.json();
         processCategoryData(data, category);
     } catch (error) {
+        missingCategories[category] = true;
         console.error(`Error loading ${category}:`, error);
     }
 }
 
 function processCategoryData(data, category) {
-    // волосы — отдельная обработка
     if (category.startsWith('hair')) {
         for (const [itemKey, itemData] of Object.entries(data)) {
             gearDatabase[category].push({
                 id: itemKey,
-                name: itemData.text || '',
-                image: `assets/images/hair/${category.replace('hair', '').toLowerCase()}/${itemKey}.png`,
-                value: itemData.value || 0
+                image: `assets/images/hair/${category.replace('hair', '').toLowerCase()}/${itemKey}.png`
             });
         }
     } else if (category === 'mount') {
@@ -74,13 +69,10 @@ function processCategoryData(data, category) {
                 if (!itemData) continue;
                 gearDatabase[category].push({
                     id: itemKey,
-                    name: itemData.text || itemKey,
                     body: `assets/images/mounts/body/${itemKey}.png`,
                     head: `assets/images/mounts/head/${itemKey}.png`,
                     icon: `assets/images/mounts/icon/${itemKey}.png`,
-                    class: setType === 'base' ? 'all' : setType,
-                    set: setType,
-                    value: itemData.value || 0
+                    class: setType === 'base' ? 'all' : setType
                 });
             }
         }
@@ -91,11 +83,8 @@ function processCategoryData(data, category) {
                 if (!itemData) continue;
                 gearDatabase[category].push({
                     id: itemKey,
-                    name: itemData.text || '',
                     image: `assets/images/${category}/${itemKey}.png`,
-                    class: setType === 'base' ? 'all' : setType,
-                    set: setType,
-                    value: itemData.value || 0
+                    class: setType === 'base' ? 'all' : setType
                 });
             }
         }
@@ -103,7 +92,6 @@ function processCategoryData(data, category) {
     console.log(`✅ ${category}: ${gearDatabase[category].length} items loaded`);
 }
 
-// ==================== ОСНОВНОЙ ФУНКЦИОНАЛ ====================
 async function init() {
     console.log('🚀 Initializing...');
     await loadAllGearData();
@@ -132,13 +120,19 @@ function setupEventListeners() {
 }
 
 function showCategory(category) {
+    if (missingCategories[category]) {
+        displayMissingCategory(category);
+        return;
+    }
     const items = gearDatabase[category] || [];
     const filteredItems = filterItemsByClass(items);
     displayItems(filteredItems, category);
 }
 
-function getItemsByCategory(category) {
-    return gearDatabase[category] || [];
+function displayMissingCategory(category) {
+    const grid = document.getElementById('itemsGrid');
+    if (!grid) return;
+    grid.innerHTML = `<p class="placeholder">No data for this category (missing JSON file): <b>${category}</b></p>`;
 }
 
 function filterItemsByClass(items) {
@@ -157,7 +151,6 @@ function displayItems(items, category) {
     items.forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.className = 'item';
-        // Не показываем технические надписи
         if (category === 'mount') {
             itemElement.innerHTML = `
                 <img src="${item.icon}" alt="" onerror="this.style.display='none'">
@@ -184,7 +177,6 @@ function selectClass(className) {
 }
 
 function selectItem(item, category) {
-    console.log(`Selected: ${item.name} from ${category}`);
     applyItemToAvatar(item, category);
 }
 
@@ -203,24 +195,17 @@ function applyItemToAvatar(item, category) {
             currentOutfit.mountHead = item.id;
         }
     } else {
-        // Для волос — отдельные слои
         let layerId = `layer${category.charAt(0).toUpperCase() + category.slice(1)}`;
-        if (category.startsWith('hair')) {
-            layerId = `layer${category.charAt(0).toUpperCase() + category.slice(1)}`;
-        }
         const layer = document.getElementById(layerId);
         if (layer) {
             layer.src = item.image;
             layer.style.display = 'block';
             currentOutfit[category] = item.id;
-        } else {
-            console.warn(`Layer element not found: ${layerId}`);
         }
     }
 }
 
 function randomizeOutfit() {
-    console.log('🎲 Randomizing outfit...');
     Object.keys(gearDatabase).forEach(category => {
         if (gearDatabase[category].length > 0) {
             const randomItem = gearDatabase[category][Math.floor(Math.random() * gearDatabase[category].length)];
@@ -230,7 +215,6 @@ function randomizeOutfit() {
 }
 
 function downloadAvatar() {
-    console.log('📥 Downloading avatar...');
     const canvas = document.createElement('canvas');
     canvas.width = 512; canvas.height = 512;
     const ctx = canvas.getContext('2d');
@@ -266,5 +250,4 @@ function downloadAvatar() {
     });
 }
 
-// ==================== ЗАПУСК ====================
 document.addEventListener('DOMContentLoaded', init);
