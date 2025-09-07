@@ -2,8 +2,10 @@
 let currentOutfit = {
     background: null, chair: null, mountBody: null, mountHead: null,
     back: null, body: null, skin: null, shirt: null, armor: null,
-    hair: null, beard: null, head: null, headAccessory: null,
-    eyewear: null, flower: null, shield: null, weapon: null, pet: null
+    hairColor: null, hairBase: null, hairBangs: null, hairBeard: null,
+    hairMustache: null, hairFlower: null, hairTopHair: null,
+    head: null, headAccessory: null, eyewear: null, flower: null,
+    shield: null, weapon: null, pet: null
 };
 let currentClass = 'all';
 let gearDatabase = {};
@@ -14,7 +16,9 @@ async function loadAllGearData() {
     const categories = [
         'weapon', 'armor', 'head', 'shield', 'back', 'body',
         'headAccessory', 'eyewear', 'background', 'skin', 'shirt', 'chair',
-        'mount', 'hair', 'beard', 'flower', 'pet'
+        'mount', 'pet',
+        // волосы — отдельные категории:
+        'hairColor', 'hairBase', 'hairBangs', 'hairBeard', 'hairMustache', 'hairFlower', 'hairTopHair'
     ];
     categories.forEach(category => {
         gearDatabase[category] = [];
@@ -32,8 +36,19 @@ async function loadRealData(categories) {
 }
 
 async function loadCategory(category) {
+    // hair категории — отдельные файлы
+    const hairMap = {
+        hairColor: 'hair/color.json',
+        hairBase: 'hair/base.json',
+        hairBangs: 'hair/bangs.json',
+        hairBeard: 'hair/beard.json',
+        hairMustache: 'hair/mustache.json',
+        hairFlower: 'hair/flower.json',
+        hairTopHair: 'hair/top-hair.json'
+    };
+    const file = hairMap[category] || `${category}.json`;
     try {
-        const response = await fetch(`data/${category}.json`);
+        const response = await fetch(`data/${file}`);
         const data = await response.json();
         processCategoryData(data, category);
     } catch (error) {
@@ -42,8 +57,17 @@ async function loadCategory(category) {
 }
 
 function processCategoryData(data, category) {
-    if (category === 'mount') {
-        // mount: { setType: { itemKey: { text, body, head, ... } } }
+    // волосы — отдельная обработка
+    if (category.startsWith('hair')) {
+        for (const [itemKey, itemData] of Object.entries(data)) {
+            gearDatabase[category].push({
+                id: itemKey,
+                name: itemData.text || '',
+                image: `assets/images/hair/${category.replace('hair', '').toLowerCase()}/${itemKey}.png`,
+                value: itemData.value || 0
+            });
+        }
+    } else if (category === 'mount') {
         for (const [setType, items] of Object.entries(data)) {
             if (!items) continue;
             for (const [itemKey, itemData] of Object.entries(items)) {
@@ -67,7 +91,7 @@ function processCategoryData(data, category) {
                 if (!itemData) continue;
                 gearDatabase[category].push({
                     id: itemKey,
-                    name: itemData.text || itemKey,
+                    name: itemData.text || '',
                     image: `assets/images/${category}/${itemKey}.png`,
                     class: setType === 'base' ? 'all' : setType,
                     set: setType,
@@ -133,15 +157,14 @@ function displayItems(items, category) {
     items.forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.className = 'item';
+        // Не показываем технические надписи
         if (category === 'mount') {
             itemElement.innerHTML = `
-                <img src="${item.icon}" alt="${item.name} Icon" onerror="this.style.display='none'">
-                <p>${item.name}</p>
+                <img src="${item.icon}" alt="" onerror="this.style.display='none'">
             `;
         } else {
             itemElement.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'">
-                <p>${item.name}</p>
+                <img src="${item.image}" alt="" onerror="this.style.display='none'">
             `;
         }
         itemElement.addEventListener('click', () => {
@@ -180,7 +203,11 @@ function applyItemToAvatar(item, category) {
             currentOutfit.mountHead = item.id;
         }
     } else {
-        const layerId = `layer${category.charAt(0).toUpperCase() + category.slice(1)}`;
+        // Для волос — отдельные слои
+        let layerId = `layer${category.charAt(0).toUpperCase() + category.slice(1)}`;
+        if (category.startsWith('hair')) {
+            layerId = `layer${category.charAt(0).toUpperCase() + category.slice(1)}`;
+        }
         const layer = document.getElementById(layerId);
         if (layer) {
             layer.src = item.image;
@@ -210,8 +237,10 @@ function downloadAvatar() {
     const layerIds = [
         'layerBackground', 'layerChair', 'layerMountBody', 'layerMountHead',
         'layerBack', 'layerBody', 'layerSkin', 'layerShirt', 'layerArmor',
-        'layerHair', 'layerBeard', 'layerHead', 'layerHeadAccessory',
-        'layerEyewear', 'layerFlower', 'layerShield', 'layerWeapon', 'layerPet'
+        'layerHairColor', 'layerHairBase', 'layerHairBangs', 'layerHairBeard',
+        'layerHairMustache', 'layerHairFlower', 'layerHairTopHair',
+        'layerHead', 'layerHeadAccessory', 'layerEyewear', 'layerFlower',
+        'layerShield', 'layerWeapon', 'layerPet'
     ];
     Promise.all(layerIds.map(id => {
         const img = document.getElementById(id);
