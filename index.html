@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=512, initial-scale=1.0">
     <title>Habitica Avatar Builder</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,18 +10,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="mainContainer">
         <header>
             <h1>Habitica Avatar Builder</h1>
             <p>A fan-made project. Not an official Habitica client.</p>
         </header>
 
         <main class="main-content">
-            <!-- ЛЕВАЯ КОЛОНКА - ПРЕВЬЮ АВАТАРА -->
             <section class="avatar-panel">
                 <div class="avatar-preview" id="avatarPreview">
                     <div class="avatar-layers">
-                        <!-- ОФИЦИАЛЬНЫЙ ПОРЯДОК HABITICA -->
                         <img class="avatar-layer" id="layerBackground" src="" alt="Background">
                         <img class="avatar-layer" id="layerChair" src="" alt="Chair">
                         <img class="avatar-layer" id="layerMountBody" src="" alt="Mount Body">
@@ -41,7 +39,7 @@
                         <img class="avatar-layer" id="layerWeapon" src="" alt="Weapon">
                         <img class="avatar-layer" id="layerPet" src="" alt="Pet">
                     </div>
-                    <p class="placeholder">Your avatar will appear here!</p>
+                    <p class="placeholder" id="avatarPlaceholder">Your avatar will appear here!</p>
                 </div>
                 
                 <div class="class-selection">
@@ -82,7 +80,6 @@
                 </div>
             </section>
 
-            <!-- СРЕДНЯЯ КОЛОНКА - КАТЕГОРИИ -->
             <section class="categories-panel">
                 <h2>Categories</h2>
                 <div class="categories-list" id="categoriesList">
@@ -105,7 +102,6 @@
                 </div>
             </section>
 
-            <!-- ПРАВАЯ КОЛОНКА - ПРЕДМЕТЫ -->
             <section class="items-panel">
                 <h2>Items</h2>
                 <div class="items-grid" id="itemsGrid">
