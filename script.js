@@ -3,21 +3,23 @@
 // Текущий наряд аватара
 let currentOutfit = {
     background: null,
-    weapon: null,
-    shield: null,
-    head: null,
-    armor: null,
+    chair: null,
+    mountBody: null,
+    mountHead: null,
     back: null,
-    mount: null,
-    pet: null,
+    body: null,
     skin: null,
+    shirt: null,
+    armor: null,
     hair: null,
     beard: null,
+    head: null,
     headAccessory: null,
     eyewear: null,
     flower: null,
-    shirt: null,
-    wheelchair: null
+    shield: null,
+    weapon: null,
+    pet: null
 };
 
 // Текущий выбранный класс для фильтрации
@@ -27,7 +29,7 @@ let currentClass = 'all';
 
 // Инициализация при загрузке страницы
 function init() {
-    console.log('🚀 Habitica Dressing Room initialized!');
+    console.log('🚀 Habitica Avatar Builder initialized!');
     setupEventListeners();
     showCategory('background');
 }
@@ -91,8 +93,7 @@ function displayItems(items) {
             <p>${item.name}</p>
         `;
         itemElement.addEventListener('click', () => {
-            alert(`Selected: ${item.name}\nImage: ${item.image}`);
-            // Здесь будет логика выбора предмета
+            selectItem(item, category);
         });
         grid.appendChild(itemElement);
     });
@@ -115,14 +116,22 @@ function selectClass(className) {
     }
 }
 
+// Выбор предмета (заглушка)
+function selectItem(item, category) {
+    console.log(`Selected: ${item.name} from ${category}`);
+    // Здесь будет логика применения предмета к аватару
+}
+
 // Случайный подбор outfit (заглушка)
 function randomizeOutfit() {
-    alert('🎲 Randomize feature coming soon!');
+    console.log('🎲 Randomizing outfit...');
+    // Здесь будет логика рандомизации
 }
 
 // Скачивание аватара (заглушка)
 function downloadAvatar() {
-    alert('📥 Download feature coming soon!');
+    console.log('📥 Downloading avatar...');
+    // Здесь будет логика скачивания
 }
 
 // ==================== ЗАПУСК ====================

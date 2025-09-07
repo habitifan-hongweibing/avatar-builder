@@ -46,6 +46,10 @@ header p {
     border-radius: 15px;
     padding: 20px;
     backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
 }
 
 .avatar-preview {
@@ -104,6 +108,8 @@ header p {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
 .class-btn:hover {
@@ -113,6 +119,19 @@ header p {
 .class-btn.active {
     background: #9f7be1;
     font-weight: bold;
+}
+
+.class-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.class-btn.active .class-icon {
+    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(220deg);
 }
 
 .action-buttons {
@@ -228,54 +247,12 @@ header p {
     margin: 0;
     word-break: break-word;
 }
-/* Стили для иконок классов */
-.class-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-    vertical-align: middle;
-    filter: brightness(0) invert(1); /* Делает SVG белым */
-    transition: all 0.3s ease;
-}
 
-/* Цвет иконок для активной кнопки */
-.class-btn.active .class-icon {
-    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(220deg);
-}
-
-/* Fallback если SVG не загрузится */
-.class-btn:not(:has(.class-icon))::before {
-    display: inline-block;
-    margin-right: 8px;
-    width: 20px;
-    text-align: center;
-}
-
-.class-btn[data-class="all"]:not(:has(.class-icon))::before {
-    content: "🌟";
-}
-
-.class-btn[data-class="warrior"]:not(:has(.class-icon))::before {
-    content: "⚔️";
-}
-
-.class-btn[data-class="rogue"]:not(:has(.class-icon))::before {
-    content: "🏹";
-}
-
-.class-btn[data-class="wizard"]:not(:has(.class-icon))::before {
-    content: "🔮";
-}
-
-.class-btn[data-class="healer"]:not(:has(.class-icon))::before {
-    content: "💖";
-}
-/* About Section - Safe */
 .about-section {
     background: rgba(255, 255, 255, 0.05);
     padding: 15px;
     border-radius: 10px;
-    margin-top: auto; /* Важно! Прижимает к низу */
+    margin-top: auto;
 }
 
 .about-section h3 {
@@ -318,17 +295,4 @@ header p {
 .gems-text {
     color: #4cd964;
     font-weight: bold;
-}
-
-/* Делаем левую колонку flex для правильного расположения */
-.avatar-panel {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    min-height: 0;
-}
-
-/* Убираем лишние отступы */
-.action-buttons {
-    margin-bottom: 20px; /* Сохраняем отступ над About */
 }
